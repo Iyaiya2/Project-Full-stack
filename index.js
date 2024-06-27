@@ -6,10 +6,10 @@ const port = 3000;
 app.use(bodyParser.json());
 
 let movies = [
-    { id: 1, title: 'Avengers', director: 'Joss Whedon', description: 'Earth\'s mightiest heroes must come together and learn to fight as a team.' },
-    { id: 2, title: 'Spiderman', director: 'Sam Raimi', description: 'When bitten by a genetically modified spider, a nerdy, shy, and awkward high school student gains spider-like abilities.' },
-    { id: 3, title: 'Thor', director: 'Kenneth Branagh', description: 'The powerful but arrogant god Thor is cast out of Asgard to live amongst humans in Midgard (Earth).' },
-    { id: 4, title: 'Aquaman', director: 'James Wan', description: 'Arthur Curry, the human-born heir to the underwater kingdom of Atlantis, goes on a quest to prevent a war between the worlds of ocean and land.' },
+    { id: 1, title: 'Avengers', director: 'Joss Whedon', description: 'Les héros les plus puissants de la Terre doivent se réunir et apprendre à se battre en équipe.' },
+    { id: 2, title: 'Spiderman', director: 'Sam Raimi', description: 'Lorsqu’il est mordu par une araignée génétiquement modifiée, un lycéen ringard, timide et maladroit acquiert des capacités d’araignée.' },
+    { id: 3, title: 'Thor', director: 'Kenneth Branagh', description: 'Le dieu puissant mais arrogant Thor est chassé d’Asgard pour vivre parmi les humains à Midgard (Terre).' },
+    { id: 4, title: 'Aquaman', director: 'James Wan', description: 'Arthur Curry, l’héritier né de l’homme du royaume sous-marin d’Atlantis, part en quête d’empêcher une guerre entre les mondes de l’océan et de la terre.' },
 ];
 
 app.get('/movies', (req, res) => {

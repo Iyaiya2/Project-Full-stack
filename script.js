@@ -4,12 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     movieForm.addEventListener('submit', async (event) => {
         event.preventDefault();
-        
+
         const title = document.getElementById('title').value;
         const director = document.getElementById('director').value;
         const description = document.getElementById('description').value;
-
-        console.log('Form submitted with:', title, director, description); // Vérifier les valeurs dans la console
 
         if (title && director && description) {
             const newMovie = { title, director, description };
