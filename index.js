@@ -1,7 +1,6 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+const cors = require('cors');
 const app = express();
-const port = 3000;
 
 app.use(bodyParser.json());
 
@@ -28,7 +27,8 @@ app.delete('/movies/:id', (req, res) => {
     movies = movies.filter(movie => movie.id != id);
     res.status(204).send();
 });
-
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+app.use(cors());
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Serveur en cours d'exécution sur le port ${PORT}`);
 });
