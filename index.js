@@ -8,10 +8,10 @@ const PORT = process.env.PORT || 3000;
 
 // Base de données temporaire de films
 let movies = [
-    { id: uuidv4(), title: 'Avengers', director: 'Joss Whedon', description: 'Les sauveurs de la terre avec toutes sorte de pouvoirs .' },
-    { id: uuidv4(), title: 'Spider-Man: Homecoming', director: 'Jon Watts', description: 'Peter Parker qui a des pouvoir araigner.' },
-    { id: uuidv4(), title: 'Thor: Ragnarok', director: 'Taika Waititi', description: 'Thor celui qui controle la foudre.' },
-    { id: uuidv4(), title: 'Aquaman', director: 'James Wan', description: 'Arthur Curry le roi atlantante .' }
+    { id: uuidv4(), title: 'Avengers', director: 'Joss Whedon', description: 'Earth\'s mightiest heroes must come together and learn to fight as a team.' },
+    { id: uuidv4(), title: 'Spider-Man: Homecoming', director: 'Jon Watts', description: 'Peter Parker tries to balance high school life with being Spider-Man.' },
+    { id: uuidv4(), title: 'Thor: Ragnarok', director: 'Taika Waititi', description: 'Thor must escape captivity and prevent Ragnarok, the end of Asgardian civilization.' },
+    { id: uuidv4(), title: 'Aquaman', director: 'James Wan', description: 'Arthur Curry must claim his throne as the rightful king of Atlantis.' }
 ];
 
 // Middleware
