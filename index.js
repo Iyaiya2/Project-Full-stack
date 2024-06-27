@@ -1,34 +1,50 @@
 const express = require('express');
 const cors = require('cors');
+const bodyParser = require('body-parser');
+const { v4: uuidv4 } = require('uuid');
+
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-app.use(bodyParser.json());
-
+// Base de données temporaire de films
 let movies = [
-    { id: 1, title: 'Avengers', director: 'Joss Whedon', description: 'Les héros les plus puissants de la Terre doivent se réunir et apprendre à se battre en équipe.' },
-    { id: 2, title: 'Spiderman', director: 'Sam Raimi', description: 'Lorsqu’il est mordu par une araignée génétiquement modifiée, un lycéen ringard, timide et maladroit acquiert des capacités d’araignée.' },
-    { id: 3, title: 'Thor', director: 'Kenneth Branagh', description: 'Le dieu puissant mais arrogant Thor est chassé d’Asgard pour vivre parmi les humains à Midgard (Terre).' },
-    { id: 4, title: 'Aquaman', director: 'James Wan', description: 'Arthur Curry, l’héritier né de l’homme du royaume sous-marin d’Atlantis, part en quête d’empêcher une guerre entre les mondes de l’océan et de la terre.' },
+    { id: uuidv4(), title: 'Avengers', director: 'Joss Whedon', description: 'Les sauveurs de la terre avec toutes sorte de pouvoirs .' },
+    { id: uuidv4(), title: 'Spider-Man: Homecoming', director: 'Jon Watts', description: 'Peter Parker qui a des pouvoir araigner.' },
+    { id: uuidv4(), title: 'Thor: Ragnarok', director: 'Taika Waititi', description: 'Thor celui qui controle la foudre.' },
+    { id: uuidv4(), title: 'Aquaman', director: 'James Wan', description: 'Arthur Curry le roi atlantante .' }
 ];
 
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
+
+// Routes
 app.get('/movies', (req, res) => {
     res.json(movies);
 });
 
 app.post('/movies', (req, res) => {
-    const newMovie = req.body;
-    newMovie.id = movies.length + 1;
+    const { title, director, description } = req.body;
+    if (!title || !director || !description) {
+        return res.status(400).json({ message: 'Missing required fields' });
+    }
+    const newMovie = { id: uuidv4(), title, director, description };
     movies.push(newMovie);
     res.status(201).json(newMovie);
 });
 
 app.delete('/movies/:id', (req, res) => {
     const { id } = req.params;
-    movies = movies.filter(movie => movie.id != id);
-    res.status(204).send();
+    const initialLength = movies.length;
+    movies = movies.filter(movie => movie.id !== id);
+    const finalLength = movies.length;
+    if (initialLength === finalLength) {
+        return res.status(404).json({ error: 'Movie not found' });
+    }
+    res.sendStatus(204);
 });
-app.use(cors());
-const PORT = process.env.PORT || 3000;
+
+// Démarrer le serveur
 app.listen(PORT, () => {
-    console.log(`Serveur en cours d'exécution sur le port ${PORT}`);
+    console.log(`Server is running on http://localhost:${PORT}`);
 });
